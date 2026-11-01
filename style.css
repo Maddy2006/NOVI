@@ -1,0 +1,50 @@
+:root{--plum:#3A1028;--mauve:#EAD3E0;--blush:#F7F1F3;--line:#E6D3DC;--mute:#7A5868;--soft:#F3E3EA}
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,system-ui,sans-serif;color:var(--plum);background:var(--blush);line-height:1.7;font-size:16px}
+a{color:inherit;text-decoration:none}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--plum);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.narrow{max-width:760px;margin:0 auto;text-align:center}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:22px;padding-bottom:22px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:28px;letter-spacing:.4em}
+.links{display:flex;gap:28px;flex-wrap:wrap;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.links a:hover{opacity:.6}.links a[aria-current]{font-weight:600}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin:0 0 16px;line-height:1.15}
+h1{font-size:clamp(40px,6vw,56px)}h2{font-size:clamp(30px,4vw,44px)}
+h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;margin:0}
+.band{background:#EDD9E2;text-align:center;padding:90px 24px}
+.band p{max-width:620px;margin:0 auto}
+.hero{padding:120px 24px}
+.hero .big{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,13vw,112px);letter-spacing:.35em;padding-left:.35em;line-height:1;margin:0}
+.hero .tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(28px,4vw,42px);margin:14px 0 22px}
+section{padding:90px 0}.white{background:#fff}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-block;padding:15px 30px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;background:var(--plum);color:#fff;border:1px solid var(--plum)}
+.btn.alt{background:transparent;color:var(--plum)}.btn:hover{opacity:.85}
+.sub{text-align:center;margin:0 0 40px}
+.grid{display:grid;gap:20px}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.card p{margin:0;font-size:14px;line-height:1.6}
+.shot{position:relative;height:160px;border-radius:10px;background:var(--soft);display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);overflow:hidden}
+.g2 .shot{height:280px}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.price{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.step{background:var(--blush);border-radius:16px;padding:28px}
+.step b{display:block;font-size:18px;margin:6px 0}
+.step span{font-family:'Cormorant Garamond',serif;font-size:44px;color:var(--mute);line-height:1}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:34px 0}
+.tile{background:var(--blush);border-radius:16px;padding:34px 20px}
+.tile b{display:block;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:56px;letter-spacing:.2em;padding-left:.2em;line-height:1.2}
+.tile span{font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:34px;margin:30px 0 0}
+details{border-bottom:1px solid var(--line);padding:22px 0;text-align:left}
+summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:22px;line-height:1}
+details[open] summary::after{content:"\2013"}
+details p{margin:12px 0 0;font-size:15px;line-height:1.7}
+footer{background:#EAD3E0;text-align:center;padding:60px 24px}
+footer .logo{display:block;font-size:30px;margin-bottom:14px;padding-left:.4em}
+footer p{margin:0;font-size:13px;letter-spacing:.08em}footer a{text-decoration:underline}
+@media(max-width:900px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}}
+@media(max-width:600px){.g4,.g2,.tiles{grid-template-columns:1fr}.links{gap:18px}section{padding:64px 0}.hero{padding:80px 24px}}
+@media(prefers-reduced-motion:no-preference){.btn{transition:opacity .2s}}
