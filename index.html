@@ -4,21 +4,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B7%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><style>.find .card{background:var(--blush)}
-#petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
-.pt-toggle{position:fixed;right:18px;bottom:18px;z-index:60;font:500 12px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--plum);border:1px solid var(--line);border-radius:999px;padding:10px 16px;cursor:pointer}
-.pt-toggle:hover{background:var(--blush)}
-.pt-toggle:focus-visible{outline:2px solid var(--plum);outline-offset:2px}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
-.reveal.in{opacity:1;transform:none}
-.reveal.in.done{transition:transform .3s ease,box-shadow .3s ease,opacity .3s ease}
-.card{transition:transform .3s ease,box-shadow .3s ease}
-.card:hover,.card.reveal.in:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(58,16,40,.10)}
-.btn{transition:transform .2s ease,opacity .2s ease}
-.btn:hover{transform:translateY(-2px);opacity:1}
-.card .shot img{transition:transform .5s ease}.card:hover .shot img{transform:scale(1.04)}
-@media(prefers-reduced-motion:reduce){#petals,.pt-toggle{display:none}}
-</style>
+<link rel="stylesheet" href="style.css"><style>.find .card{background:var(--blush)}</style>
 </head><body>
 <nav><div class="wrap"><a class="logo" href="index.html">NOVI</a><div class="links"><a href="templates.html">Templates</a><a href="custom.html">Custom</a><a href="about.html">About</a><a href="faq.html">FAQ</a></div></div></nav>
 
@@ -31,54 +17,6 @@
 <div class="grid g2"><div class="card" style="padding:32px"><span class="price">Facebook</span><h3>Follow NOVI</h3><p>Template previews, productivity tips and updates.</p><div><a class="btn alt" href="https://www.facebook.com/profile.php?id=61594375498260" target="_blank" rel="noopener">Visit our Facebook page</a></div></div>
 <div class="card" style="padding:32px"><span class="price">Fiverr</span><h3>Order a custom workspace</h3><p>Custom Notion workspace orders, booked through Fiverr.</p><div><a class="btn alt" href="https://www.fiverr.com/s/L332r8p" target="_blank" rel="noopener">Visit our Fiverr</a></div></div></div></div></section>
 <footer><a class="logo" href="index.html">NOVI</a><p><a href="https://www.facebook.com/profile.php?id=61594375498260" target="_blank" rel="noopener">Facebook</a> &nbsp;·&nbsp; <a href="https://www.fiverr.com/s/L332r8p" target="_blank" rel="noopener">Fiverr</a> &nbsp;·&nbsp; <a href="mailto:maddychaint@gmail.com">maddychaint@gmail.com</a></p></footer>
-<script>
-(function(){
-if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-/* scroll reveal */
-if('IntersectionObserver' in window){
-var els=document.querySelectorAll('.hero .big,.hero .tag,.hero .tag+p,.btns,section h2,section .sub,.grid>.card,section .narrow>p');
-var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -8% 0px'});
-els.forEach(function(el,i){el.classList.add('reveal');
-if(el.parentElement.classList.contains('grid')){el.style.transitionDelay=(Array.prototype.indexOf.call(el.parentElement.children,el)%4)*90+'ms';}
-else if(el.closest('.hero')){el.style.transitionDelay=(i%4)*120+'ms';}
-el.addEventListener('transitionend',function(){el.style.transitionDelay='';el.classList.add('done');},{once:true});
-io.observe(el);});
-}
-/* sakura petals */
-var cv=document.createElement('canvas');cv.id='petals';cv.setAttribute('aria-hidden','true');document.body.appendChild(cv);
-var ctx=cv.getContext('2d'),W,H,dpr=Math.min(window.devicePixelRatio||1,2);
-function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
-size();addEventListener('resize',size);
-var cols=['#F4B6C8','#F8CAD6','#EFA9BF','#FBDDE5','#F2C2D0'],ps=[],mx=-999,my=-999,boost=0,lastY=scrollY,on=true;
-function mk(x,y,burst){var s=7+Math.random()*8,vy=.5+Math.random()*.8;
-return{x:x===undefined?Math.random()*W:x,y:y===undefined?Math.random()*H:y,s:s,c:cols[Math.random()*cols.length|0],a:.55+Math.random()*.35,rot:Math.random()*6.28,vr:(Math.random()-.5)*.03,vy:vy,base:vy,vx:(Math.random()-.5)*.4,t:Math.random()*10,tf:.6+Math.random()*1.2,burst:!!burst};}
-for(var i=0;i<(innerWidth<700?16:30);i++)ps.push(mk());
-function draw(p){var s=p.s;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.scale(1,Math.max(.3,Math.abs(Math.cos(p.t*p.tf))));
-ctx.globalAlpha=p.a;var g=ctx.createLinearGradient(0,s,0,-s);g.addColorStop(0,'#E98AA8');g.addColorStop(.55,p.c);g.addColorStop(1,'#FFF1F5');ctx.fillStyle=g;
-ctx.beginPath();ctx.moveTo(0,s*.95);
-ctx.bezierCurveTo(s*.14,s*.7,s*.74,s*.05,s*.7,-s*.55);
-ctx.bezierCurveTo(s*.67,-s*.78,s*.6,-s*.95,s*.4,-s*.97);
-ctx.lineTo(0,-s*.72);ctx.lineTo(-s*.4,-s*.97);
-ctx.bezierCurveTo(-s*.6,-s*.95,-s*.67,-s*.78,-s*.7,-s*.55);
-ctx.bezierCurveTo(-s*.74,s*.05,-s*.14,s*.7,0,s*.95);
-ctx.closePath();ctx.fill();ctx.restore();}
-function step(){if(!on)return;ctx.clearRect(0,0,W,H);boost*=.92;
-for(var i=ps.length-1;i>=0;i--){var p=ps[i];p.t+=.02;
-var dx=p.x-mx,dy=p.y-my,d=Math.sqrt(dx*dx+dy*dy);
-if(d<130&&d>0){var f=(130-d)/130;p.vx+=dx/d*f*.9;p.vy+=dy/d*f*.5;}
-p.vx*=.985;p.vy+=(p.base-p.vy)*.03;
-p.x+=p.vx+Math.sin(p.t*p.tf)*.5;p.y+=p.vy+boost*.06;p.rot+=p.vr;draw(p);
-if(p.y>H+20||p.y<-80||p.x<-40||p.x>W+40){if(p.burst){ps.splice(i,1);}else{p.y=-20;p.x=Math.random()*W;p.vx=(Math.random()-.5)*.4;p.vy=p.base;}}}
-requestAnimationFrame(step);}
-step();
-addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;});
-document.addEventListener('pointerleave',function(){mx=my=-999;});
-addEventListener('scroll',function(){boost=Math.min(boost+Math.abs(scrollY-lastY),60);lastY=scrollY;},{passive:true});
-addEventListener('pointerdown',function(e){if(!on||ps.length>140||e.target.closest('a,button,summary,input,textarea'))return;
-for(var k=0;k<10;k++){var p=mk(e.clientX,e.clientY,true),a=Math.random()*6.28,sp=2+Math.random()*3;p.vx=Math.cos(a)*sp;p.vy=Math.sin(a)*sp-1.5;p.base=.8+Math.random()*.6;ps.push(p);}});
-var tg=document.createElement('button');tg.className='pt-toggle';tg.type='button';tg.setAttribute('aria-pressed','true');tg.textContent='Petals: on';
-tg.addEventListener('click',function(){on=!on;tg.setAttribute('aria-pressed',on);tg.textContent='Petals: '+(on?'on':'off');if(on){step();}else{ctx.clearRect(0,0,W,H);}});
-document.body.appendChild(tg);
-})();
-</script>
+<script src="motion.js" defer></script>
+<script src="pond.js" defer></script>
 </body></html>

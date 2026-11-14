@@ -51,3 +51,20 @@ footer p{margin:0;font-size:13px;letter-spacing:.08em}footer a{text-decoration:u
 
 .hero .big,.hero .tag{max-width:none;margin-left:auto;margin-right:auto}
 section.wrap{padding-top:90px;padding-bottom:90px}
+
+#petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.pt-toggle{position:fixed;right:18px;bottom:18px;z-index:60;font:500 12px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--plum);border:1px solid var(--line);border-radius:999px;padding:10px 16px;cursor:pointer}
+.pt-toggle:hover{background:var(--blush)}
+.pt-toggle:focus-visible{outline:2px solid var(--plum);outline-offset:2px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.in.done{transition:transform .3s ease,box-shadow .3s ease,opacity .3s ease}
+.card,.step,.tile{transition:transform .3s ease,box-shadow .3s ease}
+.card:hover,.card.reveal.in:hover,.step:hover,.step.reveal.in:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(58,16,40,.10)}
+.btn{transition:transform .2s ease,opacity .2s ease}
+.btn:hover{transform:translateY(-2px);opacity:1}
+.card .shot img{transition:transform .5s ease}.card:hover .shot img{transform:scale(1.04)}
+.hero{position:relative;overflow:hidden}
+#pond{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.hero>:not(#pond){position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){#petals,.pt-toggle{display:none}}
