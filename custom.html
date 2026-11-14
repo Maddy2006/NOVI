@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Custom Design | NOVI</title><meta name="description" content="Request a personalized Notion workspace.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B7%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><style>
+.enq{max-width:760px;margin:28px auto 0;background:#fff;border:1px solid var(--line);border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:20px;text-align:left}
+.enq h3{font-size:30px}
+.enq label{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.enq input,.enq textarea{font:inherit;font-size:14px;letter-spacing:0;text-transform:none;color:var(--plum);background:var(--blush);border:1px solid var(--line);border-radius:8px;padding:13px 16px;width:100%}
+.enq textarea{min-height:120px;resize:vertical}
+.enq input::placeholder,.enq textarea::placeholder{color:var(--mute)}
+.enq input:focus-visible,.enq textarea:focus-visible{outline:2px solid var(--plum);outline-offset:1px}
+.enq .btn{align-self:flex-start;cursor:pointer;font-family:inherit}
+.enq .hp{position:absolute;left:-9999px}
+#enq-status{margin:0;font-size:14px}
+@media(max-width:600px){.enq{padding:24px}}
+</style>
+</head><body>
+<nav><div class="wrap"><a class="logo" href="index.html">NOVI</a><div class="links"><a href="templates.html">Templates</a><a href="custom.html" aria-current="page">Custom</a><a href="about.html">About</a><a href="faq.html">FAQ</a></div></div></nav>
+
+<header class="band"><h1>Custom Design</h1><p>Want a workspace built around your own routine? Tell me what you need and I will design a personalized Notion setup for you.</p></header>
+<section class="white"><div class="wrap"><div class="grid g3">
+<div class="step"><span>01</span><b>Send an enquiry</b>Tell me about your routine, goals and the kind of workspace you want.</div>
+<div class="step"><span>02</span><b>We confirm</b>We agree on your requirements before any work begins.</div>
+<div class="step"><span>03</span><b>I build and deliver</b>I design your personalized Notion workspace and deliver it to you.</div></div>
+<div class="narrow" style="margin-top:48px"><p style="color:var(--mute);font-size:14px;margin:0">Packages and pricing are still in exploration.</p></div>
+<form class="enq" id="enq" action="https://formsubmit.co/ajax/maddychaint@gmail.com" method="POST">
+<h3>Request a custom workspace</h3>
+<label>Name<input type="text" name="name" placeholder="Your name" required autocomplete="name"></label>
+<label>Email<input type="email" name="email" placeholder="you@example.com" required autocomplete="email"></label>
+<label>What do you need?<textarea name="message" placeholder="Describe the workspace you have in mind" required></textarea></label>
+<input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+<input type="hidden" name="_subject" value="NOVI custom workspace enquiry">
+<input type="hidden" name="_template" value="table">
+<button class="btn" type="submit">Send enquiry</button>
+<p id="enq-status" role="status" aria-live="polite"></p>
+</form>
+<script>
+document.getElementById('enq').addEventListener('submit',async function(e){
+e.preventDefault();var f=this,st=document.getElementById('enq-status'),b=f.querySelector('button');
+b.disabled=true;st.textContent='Sending...';
+try{var r=await fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)});
+if(!r.ok)throw new Error();f.reset();st.textContent='Thank you! Your enquiry was sent and I will reply by email soon.';}
+catch(x){st.innerHTML='Something went wrong. Please email me at <a href="mailto:maddychaint@gmail.com" style="text-decoration:underline">maddychaint@gmail.com</a>.';}
+b.disabled=false;});
+</script></div></section>
+<footer><a class="logo" href="index.html">NOVI</a><p><a href="https://www.facebook.com/profile.php?id=61594375498260" target="_blank" rel="noopener">Facebook</a> &nbsp;·&nbsp; <a href="https://www.fiverr.com/s/L332r8p" target="_blank" rel="noopener">Fiverr</a> &nbsp;·&nbsp; <a href="mailto:maddychaint@gmail.com">maddychaint@gmail.com</a></p></footer>
+</body></html>
