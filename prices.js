@@ -21,15 +21,22 @@ if(!find(cur))cur=guess();
 function fmt(it){var v=it.v,d=(it.c==='MMK'||it.c==='KRW')?0:(v%1?2:0),s;
 try{s=new Intl.NumberFormat('en',{style:'currency',currency:it.c,minimumFractionDigits:d,maximumFractionDigits:d}).format(v);}catch(e){s=String(v);}
 return s.indexOf(it.c)<0?s+' '+it.c:s;}
+var chips=[];
 function render(){var it=find(cur),els=document.querySelectorAll('.price[data-price]');
-for(var i=0;i<els.length;i++)els[i].textContent=fmt(it);}
+for(var i=0;i<els.length;i++)els[i].textContent=fmt(it);
+for(var j=0;j<chips.length;j++)chips[j].setAttribute('aria-pressed',chips[j].getAttribute('data-c')===cur?'true':'false');}
 var slot=document.getElementById('cur-slot');
-if(slot){slot.className='cur';
-var lb=document.createElement('label');lb.setAttribute('for','cur-sel');lb.textContent='Currency';
-var sel=document.createElement('select');sel.id='cur-sel';
-P.forEach(function(it){var o=document.createElement('option');o.value=it.c;o.textContent=it.c+' - '+it.n;if(it.c===cur)o.selected=true;sel.appendChild(o);});
-sel.addEventListener('change',function(){cur=sel.value;try{localStorage.setItem(KEY,cur);}catch(e){}render();});
-var nt=document.createElement('p');nt.textContent='Prices in other currencies are approximate. Checkout may be charged in USD.';
-slot.appendChild(lb);slot.appendChild(sel);slot.appendChild(nt);}
+if(slot){
+var st=document.createElement('style');
+st.textContent='.curbar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:640px;margin:0 auto 36px}'
++'.curbar button{font:500 12px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#3A1028;background:transparent;border:1px solid #3A1028;border-radius:999px;padding:9px 16px;cursor:pointer;transition:background .2s,color .2s}'
++'.curbar button:hover{background:#EAD3E0}'
++'.curbar button[aria-pressed="true"]{background:#3A1028;color:#fff}'
++'.curbar button:focus-visible{outline:2px solid #3A1028;outline-offset:3px}';
+document.head.appendChild(st);
+slot.className='curbar';slot.setAttribute('role','group');slot.setAttribute('aria-label','Choose currency');
+P.forEach(function(it){var b=document.createElement('button');b.type='button';b.textContent=it.c;b.title=it.n;b.setAttribute('data-c',it.c);
+b.addEventListener('click',function(){cur=it.c;try{localStorage.setItem(KEY,cur);}catch(e){}render();});
+slot.appendChild(b);chips.push(b);});}
 render();
 })();
